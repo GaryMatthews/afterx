@@ -1,2 +1,2 @@
-# afterx
-AfterX.net IRC Website
+# AfterX.Net - IRC Network
+Website Repository
