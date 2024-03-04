@@ -1,0 +1,28 @@
+{
+	"name": "afterx.net",
+	"version": "1.0.0",
+	"description": "AfterX IRC Network",
+	"main": "index.js",
+	"type": "module",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+ssh://git@github.com/GaryMatthews/afterx.net.git"
+	},
+	"keywords": [
+		"IRC",
+		"social",
+		"network"
+	],
+	"author": "Gary Matthews",
+	"license": "UNLICENSED",
+	"bugs": {
+		"url": "https://github.com/GaryMatthews/afterx.net/issues"
+	},
+	"homepage": "https://github.com/GaryMatthews/afterx.net#readme",
+	"devDependencies": {
+		"gh-pages": "^6.1.1"
+	}
+}

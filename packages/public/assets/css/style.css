@@ -1,0 +1,94 @@
+		* {
+			padding: 0px;
+			margin: 0px;
+			overflow: hidden;
+		}
+
+		html,
+		body {
+			width: 100%;
+			height: 100%;
+		}
+
+		.grid {
+			width: calc(100% - 1px);
+			height: calc(100% - 1px);
+			display: grid;
+			grid-template-columns: minmax(min-content, max-content) auto minmax(min-content, max-content);
+			grid-auto-rows: minmax(min-content, max-content) auto minmax(min-content, max-content);
+			grid-template-areas: "header header header" "left main right" "footer footer footer";
+			background-image: linear-gradient(to right, rgba(30, 75, 115, 1), rgba(255, 255, 255, 0));
+			overflow: hidden;
+		}
+
+		header {
+			grid-area: header;
+			background-color: #555555;
+			background-image: linear-gradient(to top, rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0.2));
+		}
+
+		footer {
+			grid-area: footer;
+			background-color: #555555;
+			background-image: linear-gradient(to top, rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0.2));
+		}
+
+		main {
+			grid-area: main;
+			background-color: #699EBD;
+			/* overflow: hidden; */
+		}
+
+		aside section {
+			display: grid;
+			grid-template-columns: auto;
+			grid-auto-rows: minmax(min-content, max-content) auto minmax(min-content, max-content);
+			grid-template-areas: "header" "main" "footer";
+		}
+
+		/* .grid aside {
+				width: calc(100% - 0px);
+				height: calc(50% - 0px);
+				display: grid;
+				grid-template-columns: auto;
+				grid-auto-rows: minmax(min-content, max-content) auto minmax(min-content, max-content);
+			} */
+
+
+
+		.left,
+		.right {
+			background-color: #494949;
+			width: calc(100% - 0px);
+			height: calc(100% - 0px);
+			overflow: hidden;
+		}
+
+		.left {
+			grid-area: left;
+		}
+
+		.right {
+			grid-area: right;
+		}
+
+		.content {
+			overflow-y: scroll;
+			width: calc(100% - 0px);
+			height: calc(100% - 0px);
+			/* background-image: linear-gradient(to top, rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0.2)); */
+		}
+
+
+
+
+
+
+
+		/* .multi-bg {
+			width: 100%;
+			height: 400px;
+			background-image: url(firefox.png), url(bubbles.png), linear-gradient(to right, rgba(30, 75, 115, 1), rgba(255, 255, 255, 0));
+			background-repeat: no-repeat, no-repeat, no-repeat;
+			background-position: bottom right, left, right;
+		} */
