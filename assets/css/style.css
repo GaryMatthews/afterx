@@ -1,94 +1,264 @@
-		* {
-			padding: 0px;
-			margin: 0px;
-			overflow: hidden;
-		}
-
-		html,
-		body {
-			width: 100%;
-			height: 100%;
-		}
-
-		.grid {
-			width: calc(100% - 1px);
-			height: calc(100% - 1px);
-			display: grid;
-			grid-template-columns: minmax(min-content, max-content) auto minmax(min-content, max-content);
-			grid-auto-rows: minmax(min-content, max-content) auto minmax(min-content, max-content);
-			grid-template-areas: "header header header" "left main right" "footer footer footer";
-			background-image: linear-gradient(to right, rgba(30, 75, 115, 1), rgba(255, 255, 255, 0));
-			overflow: hidden;
-		}
-
-		header {
-			grid-area: header;
-			background-color: #555555;
-			background-image: linear-gradient(to top, rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0.2));
-		}
-
-		footer {
-			grid-area: footer;
-			background-color: #555555;
-			background-image: linear-gradient(to top, rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0.2));
-		}
-
-		main {
-			grid-area: main;
-			background-color: #699EBD;
-			/* overflow: hidden; */
-		}
-
-		aside section {
-			display: grid;
-			grid-template-columns: auto;
-			grid-auto-rows: minmax(min-content, max-content) auto minmax(min-content, max-content);
-			grid-template-areas: "header" "main" "footer";
-		}
-
-		/* .grid aside {
-				width: calc(100% - 0px);
-				height: calc(50% - 0px);
-				display: grid;
-				grid-template-columns: auto;
-				grid-auto-rows: minmax(min-content, max-content) auto minmax(min-content, max-content);
-			} */
+/* 
+	Google Fonts Imports 
+	TODO: make local
+*/
+@import url("https://fonts.googleapis.com/css2?family=Balsamiq+Sans&family=IBM+Plex+Sans:wght@300&family=Staatliches&display=swap");
 
 
 
-		.left,
-		.right {
-			background-color: #494949;
-			width: calc(100% - 0px);
-			height: calc(100% - 0px);
-			overflow: hidden;
-		}
-
-		.left {
-			grid-area: left;
-		}
-
-		.right {
-			grid-area: right;
-		}
-
-		.content {
-			overflow-y: scroll;
-			width: calc(100% - 0px);
-			height: calc(100% - 0px);
-			/* background-image: linear-gradient(to top, rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0.2)); */
-		}
+/* Variable Declaration */
+:root {
+	--light-theme: rgb(253, 253, 253);
+	--dark-theme: rgb(10, 10, 10);
+	--light-text-color: rgb(255, 255, 255);
+	--dark-text-color: rgb(0, 0, 0);
+	--decorate: rgb(3, 255, 192);
+	--header-font-family: "Staatliches", cursive;
+	--content-font-family: "Balsamiq Sans", cursive;
+	--paragraph-font-family: "IBM Plex Sans", sans-serif;
+}
 
 
 
+* {
+	padding: 0px;
+	margin: 0px;
+	box-sizing: border-box;
+	overflow: hidden;
+}
+
+html,
+body {
+	width: 100%;
+	height: 100%;
+	min-width: 100vw;
+	min-height: 100vh;
+	max-width: 100vw;
+	max-height: 100vh;
+}
+
+section {
+	display: grid;
+	grid-template-columns: minmax(min-content, max-content) auto minmax(min-content, max-content);
+	grid-auto-rows: minmax(min-content, max-content) auto minmax(min-content, max-content);
+	grid-template-areas: "header header header" "left main right" "footer footer footer";
+	width: 100%;
+	height: 100%;
+}
+
+header {
+	grid-area: header;
+}
+
+footer {
+	grid-area: footer;
+}
+
+main {
+	grid-area: main;
+}
+
+section>main {
+	overflow-y: scroll;
+	width: calc(100% - 0px);
+	height: calc(100% - 0px);
+}
+
+section>aside {
+	width: calc(100% - 0px);
+	height: calc(100% - 0px);
+}
+
+aside {
+	display: grid;
+	grid-template-columns: auto;
+	grid-auto-rows: minmax(min-content, max-content) auto minmax(min-content, max-content);
+	grid-template-areas: "header" "main" "footer";
+}
+
+aside:first-of-type {
+	grid-area: left;
+}
+
+aside:last-of-type {
+	grid-area: right;
+}
+
+/* .left {
+	grid-area: left;
+}
+
+.right {
+	grid-area: right;
+} */
 
 
 
 
-		/* .multi-bg {
-			width: 100%;
-			height: 400px;
-			background-image: url(firefox.png), url(bubbles.png), linear-gradient(to right, rgba(30, 75, 115, 1), rgba(255, 255, 255, 0));
-			background-repeat: no-repeat, no-repeat, no-repeat;
-			background-position: bottom right, left, right;
-		} */
+
+/*
+	theme
+*/
+
+/* Toggle Button */
+#toggle {
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	width: 60px;
+	height: 30px;
+	border-radius: 30px;
+	background-color: var(--dark-theme);
+	position: absolute;
+	top: 10px;
+	right: 50px;
+	transition: all 0.5s ease-in;
+	cursor: pointer;
+	z-index: 1;
+}
+
+
+/* Making a dot switch inside the Toggle Button */
+#toggle::before {
+	content: "";
+	width: 25px;
+	height: 25px;
+	border-radius: 50%;
+	background: var(--light-theme);
+	position: absolute;
+	top: 50%;
+	left: 3px;
+	transform: translateY(-50%);
+	transition: all 0.5s ease-in;
+}
+
+/* Changing toggle button background when checked */
+#toggle:checked {
+	background: var(--decorate);
+}
+
+/* Changing dot switch color and moving to the right side when checked */
+#toggle:checked::before {
+	background: var(--dark-theme);
+	left: 32px;
+}
+
+/* Changing the background & font color when checked */
+#toggle:checked~.container {
+	background: var(--dark-theme);
+	color: var(--light-text-color);
+}
+
+
+@media (prefers-color-scheme: light) {
+	body {
+		background: #FFF;
+		color: #333;
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	body {
+		background: #333;
+		color: #FFF;
+	}
+}
+
+
+
+
+
+
+section {
+	background: var(--light-theme);
+	color: var(--dark-text-color);
+
+	/* width: 100%;
+	min-height: 100vh; */
+	/* text-align: center;
+	display: grid;
+	grid-template-areas: "header header" "main main" "content1 content2" "footer footer";
+
+	gap: 50px;
+	padding: 10px 150px;
+	justify-content: center;
+	align-items: center;
+	*/
+	transition: all 0.4s ease-out;
+}
+
+
+
+header {
+	/* background-color: #555555;
+	background-image: linear-gradient(to top, rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0.2)); */
+}
+
+footer {
+	/* background-color: #555555;
+	background-image: linear-gradient(to top, rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0.2)); */
+}
+
+
+
+
+/*
+
+.grid aside {
+	width: calc(100% - 0px);
+	height: calc(50% - 0px);
+	display: grid;
+	grid-template-columns: auto;
+	grid-auto-rows: minmax(min-content, max-content) auto minmax(min-content, max-content);
+} 
+
+
+
+
+
+.left,
+.right {
+	background-color: #494949;
+	width: calc(100% - 0px);
+	height: calc(100% - 0px);
+	overflow: hidden;
+}
+
+
+
+.content {
+	overflow-y: scroll;
+	width: calc(100% - 0px);
+	height: calc(100% - 0px);
+	background-image: linear-gradient(to top, rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0.2)); 
+
+}
+
+.grid {
+width: calc(100% - 1px);
+height: calc(100% - 1px); 
+	display: grid;
+	grid-template-columns: minmax(min-content, max-content) auto minmax(min-content, max-content);
+	grid-auto-rows: minmax(min-content, max-content) auto minmax(min-content, max-content);
+	grid-template-areas: "header header header" "left main right" "footer footer footer";
+	background-image: linear-gradient(to right, rgba(30, 75, 115, 1), rgba(255, 255, 255, 0));
+	overflow: hidden;
+}
+
+
+
+section {
+width: calc(100% - 1px);
+height: calc(100% - 1px);
+} 
+
+
+.multi-bg {
+width: 100%;
+height: 400px;
+background-image: url(firefox.png), url(bubbles.png), linear-gradient(to right, rgba(30, 75, 115, 1), rgba(255, 255, 255, 0));
+background-repeat: no-repeat, no-repeat, no-repeat;
+background-position: bottom right, left, right;
+}
+
+*/
